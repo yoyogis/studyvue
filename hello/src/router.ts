@@ -1,36 +1,43 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Project from './views/project/Project.vue';
-import Home from './views/home/Home.vue';
-import Recipe from './views/recipe/Recipe.vue';
+import Vue from "vue";
+import Router from "vue-router";
+import Project from "./views/project/Project.vue";
+import Home from "./views/home/Home.vue";
+import Recipe from "./views/recipe/Recipe.vue";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'project',
+      path: "/project",
+      name: "project",
       component: Project,
       children: [
         {
-          path: '/',
-          name: 'home',
-          component: Home,
+          path: "dataset",
+          name: "dataset",
+          component: () => import("./views/dataset/Dataset.vue")
         },
         {
-          path: '/dataset',
-          name: 'dataset',
-          component: () => import('./views/dataset/Dataset.vue'),
-        },
-        {
-          path: '/recipe',
-          name: 'recipe',
-          component: Recipe,
-        },
+          path: "recipe",
+          name: "recipe",
+          component: Recipe
+        }
       ],
-    },
+      beforeEnter: (to, from, next) => {
+        let index = document.getElementById("index");
+        if(index!==null){
+          // debugger
+          if (to.path === "") {
+            index.style.display = "block";
+          } else {
+            index.style.display = "none";
+          }
+        }
+        next();
+      }
+    }
   ],
 });

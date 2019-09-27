@@ -1,7 +1,7 @@
 <template>
     <div class="project">
-      <router-link to="/dataset">Dataset</router-link> |
-      <router-link to="/recipe">Recipe</router-link>
+      <router-link to="/project/dataset">Dataset</router-link> |
+      <router-link to="/project/recipe">Recipe</router-link>
       <router-view></router-view>
     </div>
 </template>
