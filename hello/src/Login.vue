@@ -1,7 +1,15 @@
 <template>
   <div>
-    login
+  <div>
+    <label>用户名</label>
+    <input type="text">
   </div>
+  <div>
+    <label>密码</label>
+    <input type="password">
+  </div>
+  </div>
+  
 </template>
 
 <style lang="scss">

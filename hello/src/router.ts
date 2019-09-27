@@ -11,6 +11,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/",
+      name: "Home",
+      component: Home
+    },
+    {
       path: "/project",
       name: "project",
       component: Project,
@@ -25,19 +30,7 @@ export default new Router({
           name: "recipe",
           component: Recipe
         }
-      ],
-      beforeEnter: (to, from, next) => {
-        let index = document.getElementById("index");
-        if(index!==null){
-          // debugger
-          if (to.path === "") {
-            index.style.display = "block";
-          } else {
-            index.style.display = "none";
-          }
-        }
-        next();
-      }
+      ]
     }
   ],
 });

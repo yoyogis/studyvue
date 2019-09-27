@@ -1,6 +1,10 @@
 <template>
-    <div class="home">
-        Home default
+<div>
+<keep-alive>
+    <div class="home" ref='mynode'>
+        
+    </div>
+    </keep-alive>
     </div>
 </template>
 <style>
@@ -10,11 +14,30 @@
 </style>
 <script lang="ts">
 
-import Vue from 'vue'
+import Vue, { VueConstructor } from 'vue'
 import Component from 'vue-class-component';
 @Component
 export default class Home extends Vue{
+    indexComponent:VueConstructor<Vue>|null = null;
+    indexNode:any=null
     
+    constructor(){
+        super();
+    }
+
+    mounted() {
+        this.indexNode = document.getElementById('index');
+        let n:any = this.$refs.mynode; 
+        n.appendChild(this.indexNode);
+        console.log(n);
+    }
+
+    destroyed() {
+        let indexCatch = document.getElementById('indexCatch');
+        if(indexCatch!=null){
+            indexCatch.appendChild(this.indexNode);
+        }
+    }
 }
 </script>
 
